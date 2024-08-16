@@ -26,7 +26,7 @@ impl<T: VoteConfig> VotePallet<T> {
     }
 
     pub fn get_vote(&self, who: T::AccountId, voter: T::AccountId) -> bool {
-        *self.votes.get(&(who, voter)).unwrap_or(&false)
+        todo!()
     }
 }
 

@@ -4,6 +4,13 @@ Tutorial to guide developers about basic Pallet programming
 
 
 ## Coding challenge 1 cho chương trình Polkadot Bootcamp 2024
+Qua 2 phần đầu tiên `Introduction to Substrate` và `Overview Polkadot SDK`, các bạn cũng nghe nhiều từ khoá `FRAME`, `Runtime` và `Pallet` . Phần coding này mô phỏng cơ bản `FRAME Pallet` và `Runtime` như thế nào dựa trên Polkadot SDK 
+
+Tóm gọn lại kiến thức: 
++ `FRAME-pallet` : thư viện để build substrate runtime gồm có core frame (frame_support, frame_system, frame_executive), pallet chức năng , pallet parachain 
+
++ `Runtime` : tập hợp các `FRAME-pallet`s tạo thành nhiều blockchain logic khác nhau 
+
 
 ### Mô phỏng đơn giản Pallet
 
