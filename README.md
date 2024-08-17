@@ -1,4 +1,4 @@
-# Open Hack Pallet Starter - Polkadot Hackcamp Việt Nam
+# Open Hack Pallet Starter - Polkadot Hackcamp Việt Nam 🇻🇳
 Tutorial to guide developers about basic Pallet programming
 
 
