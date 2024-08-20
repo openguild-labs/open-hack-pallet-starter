@@ -51,6 +51,16 @@ impl VoteConfig for Runtime {
 + Link github mà bạn implement 
 + Screenshot kết quả chạy `cargo test` 
 
+### Cách thức nộp bài 
+1. Step 1: `Fork` repo 
+2. Step 2: Tạo PR gồm có
++ Tên Discord
++ Link github mà bạn implement 
++ Screenshot kết quả chạy `cargo test` 
+
+
+
+
 
 
 
