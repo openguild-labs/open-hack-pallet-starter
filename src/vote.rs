@@ -18,6 +18,9 @@ impl<T: VoteConfig> VotePallet<T> {
     // Vote Yes
 
     pub fn vote(&mut self, who: T::AccountId, voter: T::AccountId) -> Result<(), &'static str> {
+        if self.get_vote(who.clone(), voter.clone()) {
+            return Err("Already voted");
+        }
         self.votes.insert((who, voter), true);
         Ok(())
     }
@@ -25,6 +28,9 @@ impl<T: VoteConfig> VotePallet<T> {
     // Vote No
 
     pub fn revoke(&mut self, who: T::AccountId, voter: T::AccountId) -> Result<(), &'static str> {
+        if !self.get_vote(who.clone(), voter.clone()) {
+            return Err("Already revoked");
+        }
         self.votes.insert((who, voter), false);
         Ok(())
     }
