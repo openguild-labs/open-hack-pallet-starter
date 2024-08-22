@@ -13,14 +13,22 @@ pub struct BalancePallet<T: BalanceConfig> {
     pub balances: HashMap<T::AccountId, T::Balance>,
 }
 
+impl<T: BalanceConfig> Default for BalancePallet<T> {
+    fn default() -> Self {
+        Self {
+            balances: HashMap::new(),
+        }
+    }
+}
+
 impl<T: BalanceConfig> BalancePallet<T> {
     pub fn new() -> Self {
-        todo!()
+        Self::default()
     }
 
     // set coins cho 1 account
     pub fn set_balance(&mut self, who: T::AccountId, amount: T::Balance) {
-        todo!()
+        self.balances.insert(who, amount);
     }
 
     // transfer coins
@@ -30,11 +38,15 @@ impl<T: BalanceConfig> BalancePallet<T> {
         to: T::AccountId,
         amount: T::Balance,
     ) -> Result<(), &'static str> {
-        todo!()
+        let sender_amount = self.get_balance(from.clone());
+        let receiver_amount = self.get_balance(to.clone());
+        self.set_balance(from, sender_amount - amount);
+        self.set_balance(to, receiver_amount + amount);
+        Ok(())
     }
 
     pub fn get_balance(&self, who: T::AccountId) -> T::Balance {
-        todo!()
+        *self.balances.get(&who).unwrap_or(&T::Balance::zero())
     }
 }
 

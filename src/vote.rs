@@ -8,25 +8,33 @@ pub struct VotePallet<T: VoteConfig> {
     pub votes: HashMap<(T::AccountId, T::AccountId), bool>,
 }
 
+impl<T: VoteConfig> Default for VotePallet<T> {
+    fn default() -> Self {
+        Self {
+            votes: HashMap::new(),
+        }
+    }
+}
+
 impl<T: VoteConfig> VotePallet<T> {
     pub fn new() -> Self {
-        todo!()
+        Self::default()
     }
 
     // Vote Yes
-
     pub fn vote(&mut self, who: T::AccountId, voter: T::AccountId) -> Result<(), &'static str> {
-        todo!()
+        self.votes.insert((who, voter), true);
+        Ok(())
     }
 
     // Vote No
-
     pub fn revoke(&mut self, who: T::AccountId, voter: T::AccountId) -> Result<(), &'static str> {
-        todo!()
+        self.votes.insert((who, voter), false);
+        Ok(())
     }
 
     pub fn get_vote(&self, who: T::AccountId, voter: T::AccountId) -> bool {
-        todo!()
+        *self.votes.get(&(who, voter)).unwrap_or(&false)
     }
 }
 
@@ -48,7 +56,7 @@ mod tests {
 
         // kiểm tra vote
         let yes = vote.get_vote(alice, bob);
-        assert_eq!(yes, true);
+        assert!(yes);
 
         // alice revoke bob
 
@@ -57,6 +65,6 @@ mod tests {
 
         // kiểm tra vote
         let no = vote.get_vote(alice, bob);
-        assert_eq!(no, false);
+        assert!(!no);
     }
 }
