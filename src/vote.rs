@@ -10,23 +10,27 @@ pub struct VotePallet<T: VoteConfig> {
 
 impl<T: VoteConfig> VotePallet<T> {
     pub fn new() -> Self {
-        todo!()
+        Self {
+            votes: HashMap::new(),
+        }
     }
 
     // Vote Yes
 
     pub fn vote(&mut self, who: T::AccountId, voter: T::AccountId) -> Result<(), &'static str> {
-        todo!()
+        self.votes.insert((who, voter), true);
+        Ok(())
     }
 
     // Vote No
 
     pub fn revoke(&mut self, who: T::AccountId, voter: T::AccountId) -> Result<(), &'static str> {
-        todo!()
+        self.votes.insert((who, voter), false);
+        Ok(())
     }
 
     pub fn get_vote(&self, who: T::AccountId, voter: T::AccountId) -> bool {
-        todo!()
+        self.votes.get(&(who, voter)).unwrap_or(&false).clone()
     }
 }
 

@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::result::Result;
 
 use num::traits::{CheckedAdd, CheckedSub, Zero};
 
@@ -15,12 +16,14 @@ pub struct BalancePallet<T: BalanceConfig> {
 
 impl<T: BalanceConfig> BalancePallet<T> {
     pub fn new() -> Self {
-        todo!()
+        Self {
+            balances: HashMap::new(),
+        }
     }
 
     // set coins cho 1 account
     pub fn set_balance(&mut self, who: T::AccountId, amount: T::Balance) {
-        todo!()
+        self.balances.insert(who, amount);
     }
 
     // transfer coins
@@ -30,11 +33,15 @@ impl<T: BalanceConfig> BalancePallet<T> {
         to: T::AccountId,
         amount: T::Balance,
     ) -> Result<(), &'static str> {
-        todo!()
+        let fromBalance = self.get_balance(from.clone());
+        let toBalance = self.get_balance(to.clone());
+        self.set_balance(from, fromBalance - amount);
+        self.set_balance(to, toBalance + amount);
+        Ok(())
     }
 
     pub fn get_balance(&self, who: T::AccountId) -> T::Balance {
-        todo!()
+        *self.balances.get(&who).unwrap_or(&T::Balance::zero())
     }
 }
 
